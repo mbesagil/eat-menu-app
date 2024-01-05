@@ -42,3 +42,4 @@ app.listen(process.env.APP_PORT, () => {
   app.use("/categories", CategoryiesRoutes);
   app.use("/products", ProductsRoutes);
 });
+
