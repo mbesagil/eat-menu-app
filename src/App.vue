@@ -4,7 +4,6 @@ import BaseModal from "./components/BaseModal.vue";
 
 onMounted(() => {
   KTComponents.init();
-
   // configler cakilsin
 });
 </script>
