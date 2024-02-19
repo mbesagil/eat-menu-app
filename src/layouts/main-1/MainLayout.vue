@@ -1,5 +1,8 @@
 <script setup>
+import { useThemeStore } from "@/stores/themeStore";
 import { onMounted } from "vue";
+
+const themeStore = useThemeStore();
 
 onMounted(() => {
   console.log("testttttttt");
@@ -50,7 +53,7 @@ onMounted(() => {
                 <img
                   alt="Logo"
                   src="/public/assets/media/icons/eat/eat_app_icon.png"
-                  class="h-20px "
+                  class="h-20px"
                 />
               </a>
               <!--end::Logo image-->
@@ -61,11 +64,22 @@ onMounted(() => {
               <!--begin::Chat-->
               <div class="app-navbar-item ms-1 ms-lg-3">
                 <!--begin::Menu wrapper-->
-                <div
-                  class="btn btn-icon btn-circle btn-color-gray-500 btn-active-color-primary btn-custom shadow-xs bg-body"
-                  id="kt_drawer_chat_toggle"
-                >
-                  <i class="ki-outline ki-message-notif fs-1"></i>
+                <div>
+                  <button
+                    class="btn btn-icon-gray-500"
+                    v-if="themeStore.mode == 'light'"
+                    @click="themeStore.setMode('dark')"
+                  >
+                    <i class="fa fa-sun fs-4"></i>
+                  </button>
+
+                  <button
+                    class="btn btn-icon-gray-500"
+                    v-else
+                    @click="themeStore.setMode('light')"
+                  >
+                    <i class="fa fa-moon fs-4"></i>
+                  </button>
                 </div>
                 <!--end::Menu wrapper-->
               </div>
@@ -112,10 +126,10 @@ onMounted(() => {
             <!--begin::Logo image-->
             <a href="index.html">
               <img
-                  alt="Logo"
-                  src="/public/assets/media/icons/eat/eat_app_icon.png"
-                  class="h-30px  "
-                />
+                alt="Logo"
+                src="/public/assets/media/icons/eat/eat_app_icon.png"
+                class="h-30px"
+              />
             </a>
             <!--end::Logo image-->
             <!--begin::User menu-->
@@ -306,11 +320,14 @@ onMounted(() => {
                   >
                     <!--begin::Menu item-->
                     <div class="menu-item px-3 my-0">
-                      <a
-                        href="#"
-                        class="menu-link px-3 py-2"
+                      <!-- data-kt-value="light"
                         data-kt-element="mode"
-                        data-kt-value="light"
+                      href="#"
+                    -->
+                      <a
+                        class="menu-link px-3 py-2"
+                        :class="themeStore.mode == 'light' ? 'active' : ''"
+                        @click="themeStore.setMode('light')"
                       >
                         <span class="menu-icon" data-kt-element="icon">
                           <i class="ki-outline ki-night-day fs-2"></i>
@@ -321,11 +338,14 @@ onMounted(() => {
                     <!--end::Menu item-->
                     <!--begin::Menu item-->
                     <div class="menu-item px-3 my-0">
+                      <!-- data-kt-value="dark"
+                      href="#"
+                      data-kt-element="mode"
+                    -->
                       <a
-                        href="#"
-                        class="menu-link px-3 py-2 active"
-                        data-kt-element="mode"
-                        data-kt-value="dark"
+                        class="menu-link px-3 py-2"
+                        :class="themeStore.mode == 'dark' ? 'active' : ''"
+                        @click="themeStore.setMode('dark')"
                       >
                         <span class="menu-icon" data-kt-element="icon">
                           <i class="ki-outline ki-moon fs-2"></i>
@@ -691,45 +711,14 @@ onMounted(() => {
             >
               <!--begin::Copyright-->
               <div class="text-gray-900 order-2 order-md-1">
-                <span class="text-muted fw-semibold me-1">2023©</span>
+                <span class="text-muted fw-semibold me-1">{{new Date().getFullYear()}}©</span>
                 <a
-                  href="https://keenthemes.com"
-                  target="_blank"
                   class="text-gray-800 text-hover-primary"
-                  >Keenthemes</a
+                  >EatFast</a
                 >
               </div>
               <!--end::Copyright-->
-              <!--begin::Menu-->
-              <ul
-                class="menu menu-gray-600 menu-hover-primary fw-semibold order-1"
-              >
-                <li class="menu-item">
-                  <a
-                    href="https://keenthemes.com"
-                    target="_blank"
-                    class="menu-link px-2"
-                    >About</a
-                  >
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://devs.keenthemes.com"
-                    target="_blank"
-                    class="menu-link px-2"
-                    >Support</a
-                  >
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://1.envato.market/EA4JP"
-                    target="_blank"
-                    class="menu-link px-2"
-                    >Purchase</a
-                  >
-                </li>
-              </ul>
-              <!--end::Menu-->
+
             </div>
             <!--end::Footer container-->
           </div>

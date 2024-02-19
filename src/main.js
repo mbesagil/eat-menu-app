@@ -11,6 +11,7 @@ const pinia = createPinia();
 //element plus
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
+import "element-plus/theme-chalk/dark/css-vars.css"; // for change theme mode ('dark' \\ 'light')
 
 //apex chart
 import VueApexCharts from "vue3-apexcharts";
